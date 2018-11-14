@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/MainScene.unity
+- path: Assets/Scenes/AR_Spatial_Audio.unity
   isLoaded: 1
   isActive: 1
 - path: Assets/GoogleARCore/Examples/HelloAR/Scenes/HelloAR.unity

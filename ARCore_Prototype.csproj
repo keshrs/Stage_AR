@@ -316,15 +316,11 @@
     <Compile Include="Assets\GoogleARCore\Examples\CloudAnchors\Scripts\RoomSharingClient.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\CloudAnchors\Scripts\RoomSharingMsgType.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\CloudAnchors\Scripts\RoomSharingServer.cs" />
-    <Compile Include="Assets\GoogleARCore\Examples\Common\Scripts\DetectedPlaneGenerator.cs" />
-    <Compile Include="Assets\GoogleARCore\Examples\Common\Scripts\DetectedPlaneVisualizer.cs" />
-    <Compile Include="Assets\GoogleARCore\Examples\Common\Scripts\PointcloudVisualizer.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\ComputerVision\Scripts\ComputerVisionController.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\ComputerVision\Scripts\EdgeDetector.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\ComputerVision\Scripts\PointClickHandler.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\ComputerVision\Scripts\TextureReader.cs" />
     <Compile Include="Assets\GoogleARCore\Examples\ComputerVision\Scripts\TextureReaderApi.cs" />
-    <Compile Include="Assets\GoogleARCore\Examples\HelloAR\Scripts\HelloARController.cs" />
     <Compile Include="Assets\GoogleARCore\SDK\InstantPreview\Scripts\InstantPreviewInput.cs" />
     <Compile Include="Assets\GoogleARCore\SDK\InstantPreview\Scripts\InstantPreviewManager.cs" />
     <Compile Include="Assets\GoogleARCore\SDK\InstantPreview\Scripts\InstantPreviewTrackedPoseDriver.cs" />
@@ -443,6 +439,12 @@
     <Compile Include="Assets\GoogleARCore\SDK\Scripts\XPSession.cs" />
     <Compile Include="Assets\GoogleARCore\SDK\Scripts\XPSessionStatus.cs" />
     <Compile Include="Assets\GoogleARCore\SDK\Scripts\XPTrackingState.cs" />
+    <Compile Include="Assets\Scripts\AugmentedImageController.cs" />
+    <Compile Include="Assets\Scripts\AugmentedImageVisualizer.cs" />
+    <Compile Include="Assets\Scripts\DetectedPlaneGenerator.cs" />
+    <Compile Include="Assets\Scripts\DetectedPlaneVisualizer.cs" />
+    <Compile Include="Assets\Scripts\MainController.cs" />
+    <Compile Include="Assets\Scripts\PointcloudVisualizer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\GoogleARCore\Editor\ARCoreiOSDependencies.template" />
