@@ -97,21 +97,22 @@ AudioSource:
   m_GameObject: {fileID: 137650}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 248799cb4acba48f7b3ee842a80f788c,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: b720eca6743f0194c9f0b79c3fb01ca7, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
-  Spatialize: 0
+  Spatialize: 1
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 5
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -190,7 +191,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 137650}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef5e1719799ca4f9b9f5db81449517ca, type: 3}
   m_Name: 
@@ -201,8 +202,8 @@ MonoBehaviour:
   listenerDirectivityAlpha: 0
   listenerDirectivitySharpness: 1
   gainDb: 0
-  nearFieldEffectEnabled: 0
+  nearFieldEffectEnabled: 1
   nearFieldEffectGain: 1
-  occlusionEnabled: 0
-  occlusionIntensity: 1
+  occlusionEnabled: 1
+  occlusionIntensity: 2.5
   quality: 2

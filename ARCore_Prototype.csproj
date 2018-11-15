@@ -439,8 +439,19 @@
     <Compile Include="Assets\GoogleARCore\SDK\Scripts\XPSession.cs" />
     <Compile Include="Assets\GoogleARCore\SDK\Scripts\XPSessionStatus.cs" />
     <Compile Include="Assets\GoogleARCore\SDK\Scripts\XPTrackingState.cs" />
+    <Compile Include="Assets\ResonanceAudio\Scripts\ResonanceAudio.cs" />
+    <Compile Include="Assets\ResonanceAudio\Scripts\ResonanceAudioAcousticMesh.cs" />
+    <Compile Include="Assets\ResonanceAudio\Scripts\ResonanceAudioListener.cs" />
+    <Compile Include="Assets\ResonanceAudio\Scripts\ResonanceAudioMaterialMap.cs" />
+    <Compile Include="Assets\ResonanceAudio\Scripts\ResonanceAudioMaterialMapper.cs" />
+    <Compile Include="Assets\ResonanceAudio\Scripts\ResonanceAudioMaterialMapperUpdater.cs" />
+    <Compile Include="Assets\ResonanceAudio\Scripts\ResonanceAudioReverbProbe.cs" />
+    <Compile Include="Assets\ResonanceAudio\Scripts\ResonanceAudioRoom.cs" />
+    <Compile Include="Assets\ResonanceAudio\Scripts\ResonanceAudioRoomManager.cs" />
+    <Compile Include="Assets\ResonanceAudio\Scripts\ResonanceAudioSource.cs" />
     <Compile Include="Assets\Scripts\AugmentedImageController.cs" />
     <Compile Include="Assets\Scripts\AugmentedImageVisualizer.cs" />
+    <Compile Include="Assets\Scripts\ButtonSwitchTree.cs" />
     <Compile Include="Assets\Scripts\DetectedPlaneGenerator.cs" />
     <Compile Include="Assets\Scripts\DetectedPlaneVisualizer.cs" />
     <Compile Include="Assets\Scripts\MainController.cs" />
@@ -448,13 +459,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\GoogleARCore\Editor\ARCoreiOSDependencies.template" />
-    <None Include="Assets\GoogleARCore\Examples\Common\Materials\Shaders\MobileDiffuseWithLightEstimation.shader" />
-    <None Include="Assets\GoogleARCore\Examples\Common\Materials\Shaders\MobileSpecularWithLightEstimation.shader" />
-    <None Include="Assets\GoogleARCore\Examples\Common\Materials\Shaders\PlaneGrid.shader" />
-    <None Include="Assets\GoogleARCore\Examples\Common\Materials\Shaders\PointCloud.shader" />
     <None Include="Assets\GoogleARCore\Examples\ComputerVision\Materials\EdgeDetectionBackground.shader" />
     <None Include="Assets\GoogleARCore\SDK\Materials\ARBackground.shader" />
+    <None Include="Assets\Materials\Shaders\MobileDiffuseWithLightEstimation.shader" />
+    <None Include="Assets\Materials\Shaders\MobileSpecularWithLightEstimation.shader" />
+    <None Include="Assets\Materials\Shaders\PlaneGrid.shader" />
+    <None Include="Assets\Materials\Shaders\PointCloud.shader" />
     <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver_v1.2.88.0.txt" />
+    <None Include="Assets\ResonanceAudio\Shaders\ResonanceAudioSurfaceMaterial.shader" />
     <None Include="Packages\com.unity.package-manager-ui\Editor\Resources\Styles\Main_Dark.uss" />
     <None Include="Packages\com.unity.package-manager-ui\Editor\Resources\Styles\Main_Light.uss" />
     <None Include="Packages\com.unity.package-manager-ui\Editor\Resources\Templates\Alert.uxml" />

@@ -399,16 +399,25 @@
     <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\ExamplePreprocessBuild.cs" />
     <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\PreprocessBuildBase.cs" />
     <Compile Include="Assets\GoogleARCore\SDK\Scripts\Editor\RequiredOptionalPreprocessBuild.cs" />
+    <Compile Include="Assets\ResonanceAudio\Editor\ResonanceAudioBuildProcessor.cs" />
+    <Compile Include="Assets\ResonanceAudio\Editor\ResonanceAudioListenerEditor.cs" />
+    <Compile Include="Assets\ResonanceAudio\Editor\ResonanceAudioMaterialMapEditor.cs" />
+    <Compile Include="Assets\ResonanceAudio\Editor\ResonanceAudioReverbBakingWindow.cs" />
+    <Compile Include="Assets\ResonanceAudio\Editor\ResonanceAudioReverbComputer.cs" />
+    <Compile Include="Assets\ResonanceAudio\Editor\ResonanceAudioReverbProbeEditor.cs" />
+    <Compile Include="Assets\ResonanceAudio\Editor\ResonanceAudioRoomEditor.cs" />
+    <Compile Include="Assets\ResonanceAudio\Editor\ResonanceAudioSourceEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\GoogleARCore\Editor\ARCoreiOSDependencies.template" />
-    <None Include="Assets\GoogleARCore\Examples\Common\Materials\Shaders\MobileDiffuseWithLightEstimation.shader" />
-    <None Include="Assets\GoogleARCore\Examples\Common\Materials\Shaders\MobileSpecularWithLightEstimation.shader" />
-    <None Include="Assets\GoogleARCore\Examples\Common\Materials\Shaders\PlaneGrid.shader" />
-    <None Include="Assets\GoogleARCore\Examples\Common\Materials\Shaders\PointCloud.shader" />
     <None Include="Assets\GoogleARCore\Examples\ComputerVision\Materials\EdgeDetectionBackground.shader" />
     <None Include="Assets\GoogleARCore\SDK\Materials\ARBackground.shader" />
+    <None Include="Assets\Materials\Shaders\MobileDiffuseWithLightEstimation.shader" />
+    <None Include="Assets\Materials\Shaders\MobileSpecularWithLightEstimation.shader" />
+    <None Include="Assets\Materials\Shaders\PlaneGrid.shader" />
+    <None Include="Assets\Materials\Shaders\PointCloud.shader" />
     <None Include="Assets\PlayServicesResolver\Editor\play-services-resolver_v1.2.88.0.txt" />
+    <None Include="Assets\ResonanceAudio\Shaders\ResonanceAudioSurfaceMaterial.shader" />
     <None Include="Packages\com.unity.package-manager-ui\Editor\Resources\Styles\Main_Dark.uss" />
     <None Include="Packages\com.unity.package-manager-ui\Editor\Resources\Styles\Main_Light.uss" />
     <None Include="Packages\com.unity.package-manager-ui\Editor\Resources\Templates\Alert.uxml" />

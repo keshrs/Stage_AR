@@ -1,24 +1,4 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="HelloARController.cs" company="Google">
-//
-// Copyright 2017 Google Inc. All Rights Reserved.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-// http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-//
-// </copyright>
-//-----------------------------------------------------------------------
-
-namespace GoogleARCore.Examples.HelloAR
+﻿namespace GoogleARCore
 {
     using System.Collections.Generic;
     using GoogleARCore;
@@ -54,6 +34,13 @@ namespace GoogleARCore.Examples.HelloAR
         /// A model to place when a raycast from a user touch hits a feature point.
         /// </summary>
         public GameObject ModelPointPrefab;
+
+        public bool ModelPrefabToggle = true;
+
+        public void toggleModelPrefab()
+        {
+            ModelPrefabToggle = !ModelPrefabToggle;
+        }
 
         /// <summary>
         /// A gameobject parenting UI for displaying the "searching for planes" snackbar.
@@ -97,13 +84,19 @@ namespace GoogleARCore.Examples.HelloAR
 
             SearchingForPlaneUI.SetActive(showSearchingUI);
 
-            // If the player has not touched the screen, we are done with this update.
-            Touch touch;
-            if (Input.touchCount < 1 || (touch = Input.GetTouch(0)).phase != TouchPhase.Began)
+            // If the player has touched the screen, spawn the selected Model.
+            Touch touch = Input.GetTouch(0);
+            if (Input.touchCount >= 1 || (touch.phase == TouchPhase.Began))
             {
-                return;
+                SpawnModel(touch);
             }
+        }
 
+        /// <summary>
+        /// Spawns the selected Model at location of raycasted touch
+        /// </summary>
+        private void SpawnModel(Touch touch)
+        {
             // Raycast against the location the player touched to search for planes.
             TrackableHit hit;
             TrackableHitFlags raycastFilter = TrackableHitFlags.PlaneWithinPolygon |
@@ -125,11 +118,11 @@ namespace GoogleARCore.Examples.HelloAR
                     GameObject prefab;
                     if (hit.Trackable is FeaturePoint)
                     {
-                        prefab = ModelPointPrefab;
+                        prefab = ModelPrefabToggle ? ModelPointPrefab : ModelPlanePrefab;
                     }
                     else
                     {
-                        prefab = ModelPlanePrefab;
+                        prefab = ModelPrefabToggle ? ModelPlanePrefab : ModelPointPrefab;
                     }
 
                     // Instantiate Model model at the hit pose.
