@@ -142,7 +142,7 @@ namespace GoogleARCore.Examples.HelloAR
                     // world evolves.
                     var anchor = hit.Trackable.CreateAnchor(hit.Pose);
 
-                    // Make model model a child of the anchor.
+                    // Make Model model a child of the anchor.
                     modelObject.transform.parent = anchor.transform;
                 }
             }
