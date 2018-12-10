@@ -1,4 +1,4 @@
-﻿namespace GoogleARCore
+﻿namespace StageAR
 {
     using System.Collections.Generic;
     using GoogleARCore;
@@ -7,70 +7,54 @@
 
 #if UNITY_EDITOR
     // Set up touch input propagation while using Instant Preview in the editor.
-    using Input = InstantPreviewInput;
+    using Input = GoogleARCore.InstantPreviewInput;
 #endif
 
-    /// <summary>
-    /// Controls the HelloAR example.
-    /// </summary>
+    // Main Controller for the spatial audio project
     public class MainController : MonoBehaviour
     {
-        /// <summary>
-        /// The first-person camera being used to render the passthrough camera image (i.e. AR background).
-        /// </summary>
+        // This is the camera which renders the AR background, aka real world.
         public Camera FirstPersonCamera;
 
-        /// <summary>
-        /// A prefab for tracking and visualizing detected planes.
-        /// </summary>
+        // A prefab for tracking and visualizing detected planes.
+        // Currently default ARCore object.
         public GameObject DetectedPlanePrefab;
 
-        /// <summary>
-        /// A model to place when a raycast from a user touch hits a plane.
-        /// </summary>
-        public GameObject ModelPlanePrefab;
+        // A model to place when a raycast from a user touch hits a plane.
+        // Currently a palm tree -- can be modified in Unity
+        public GameObject ModelPrefab_1;
+        
+        // An alternative model to place when a raycast from a user touch hits a plane.
+        // Currently a poplar tree -- can be modified in Unity
+        public GameObject ModelPrefab_2;
 
-        /// <summary>
-        /// A model to place when a raycast from a user touch hits a feature point.
-        /// </summary>
-        public GameObject ModelPointPrefab;
-
+        // A toggle variable to change which model is spawned on touch.
         public bool ModelPrefabToggle = true;
 
-        public void toggleModelPrefab()
+        public void ToggleModelPrefab()
         {
             ModelPrefabToggle = !ModelPrefabToggle;
         }
-
-        /// <summary>
-        /// A gameobject parenting UI for displaying the "searching for planes" snackbar.
-        /// </summary>
+        
+        // A gameobject parent of UI for displaying the "searching for planes" snackbar.
         public GameObject SearchingForPlaneUI;
-
-        /// <summary>
-        /// The rotation in degrees need to apply to model when the Model model is placed.
-        /// </summary>
+        
+        // The rotation in degrees to apply to model when placed.
         private const float k_ModelRotation = 180.0f;
-
-        /// <summary>
-        /// A list to hold all planes ARCore is tracking in the current frame. This object is used across
-        /// the application to avoid per-frame allocations.
-        /// </summary>
+        
+        // A list to hold all planes ARCore is tracking in the current frame. This object is used across
+        // the application to avoid per-frame allocations.
         private List<DetectedPlane> m_AllPlanes = new List<DetectedPlane>();
-
-        /// <summary>
+        
         /// True if the app is in the process of quitting due to an ARCore connection error, otherwise false.
-        /// </summary>
         private bool m_IsQuitting = false;
 
-        /// <summary>
-        /// The Unity Update() method.
-        /// </summary>
+
         public void Update()
         {
             _UpdateApplicationLifecycle();
 
-            // Hide snackbar when currently tracking at least one plane.
+            // Hide snackbar when tracking at least one plane.
             Session.GetTrackables<DetectedPlane>(m_AllPlanes);
             bool showSearchingUI = true;
             for (int i = 0; i < m_AllPlanes.Count; i++)
@@ -84,7 +68,7 @@
 
             SearchingForPlaneUI.SetActive(showSearchingUI);
 
-            // If the player has touched the screen, spawn the selected Model.
+            // If the player has touched the screen, spawn the selected model.
             Touch touch = Input.GetTouch(0);
             if (Input.touchCount >= 1 || (touch.phase == TouchPhase.Began))
             {
@@ -92,19 +76,55 @@
             }
         }
 
-        /// <summary>
-        /// Spawns the selected Model at location of raycasted touch
-        /// </summary>
+        /// Spawns the selected model at location of raycasted touch
         private void SpawnModel(Touch touch)
         {
+            /// Model collision handling here
+            Ray raycast = FirstPersonCamera.ScreenPointToRay(touch.position);
+            RaycastHit raycastHit;
+            if (Physics.Raycast(raycast, out raycastHit))
+            {
+                // All (currently two) virtual objects have been tagged accordingly in order to be detected
+                string tag = raycastHit.collider.gameObject.tag;
+                if (tag.Equals("VirtualObject"))
+                {
+                    // This assigment selects what prefab the siblings are created from
+                    GameObject prefab_1 = ModelPrefabToggle ? ModelPrefab_1 : ModelPrefab_2;
+
+                    // This is the object sibling positions will be relative to
+                    var baseObject = raycastHit.collider.gameObject;
+
+                    // Set offset for left and right siblings to be random, with min distance
+                    Vector3 vOffsetLeft = baseObject.transform.position;
+                        vOffsetLeft.x -= (float)0.2 + (Random.value * (float)0.8);
+                        vOffsetLeft.z += (float)0.2 + (Random.value * (float)0.8);
+                    Vector3 vOffsetRight = baseObject.transform.position;
+                        vOffsetRight.x += (float)0.2 + (Random.value * (float)0.8);
+                        vOffsetRight.z += (float)0.2 + (Random.value * (float)0.8);
+
+                    // Instantiate sibling models at offset the hit pose.
+                    var siblingLeft = Instantiate(prefab_1, vOffsetLeft, baseObject.transform.rotation);
+                    var siblingRight = Instantiate(prefab_1, vOffsetRight, baseObject.transform.rotation);
+
+                    // Each sibling transform is parented by the original object
+                    siblingLeft.transform.parent = baseObject.transform;
+                    siblingRight.transform.parent = baseObject.transform;
+
+                    // Bypass plane collisions detection if we hit an object
+                    return;
+                }
+            }
+
+            /// Plane collion handling below
+
             // Raycast against the location the player touched to search for planes.
             TrackableHit hit;
             TrackableHitFlags raycastFilter = TrackableHitFlags.PlaneWithinPolygon |
                 TrackableHitFlags.FeaturePointWithSurfaceNormal;
-
+            
             if (Frame.Raycast(touch.position.x, touch.position.y, raycastFilter, out hit))
             {
-                // Use hit pose and camera pose to check if hittest is from the
+                // Use hit pose and camera pose to check if hit test is from the
                 // back of the plane, if it is, no need to create the anchor.
                 if ((hit.Trackable is DetectedPlane) &&
                     Vector3.Dot(FirstPersonCamera.transform.position - hit.Pose.position,
@@ -118,11 +138,11 @@
                     GameObject prefab;
                     if (hit.Trackable is FeaturePoint)
                     {
-                        prefab = ModelPrefabToggle ? ModelPointPrefab : ModelPlanePrefab;
+                        prefab = ModelPrefabToggle ? ModelPrefab_2 : ModelPrefab_1;
                     }
                     else
                     {
-                        prefab = ModelPrefabToggle ? ModelPlanePrefab : ModelPointPrefab;
+                        prefab = ModelPrefabToggle ? ModelPrefab_1 : ModelPrefab_2;
                     }
 
                     // Instantiate Model model at the hit pose.
@@ -135,7 +155,7 @@
                     // world evolves.
                     var anchor = hit.Trackable.CreateAnchor(hit.Pose);
 
-                    // Make Model model a child of the anchor.
+                    // Make the model a child of the anchor.
                     modelObject.transform.parent = anchor.transform;
                 }
             }

@@ -635,7 +635,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2087955693}
-        m_MethodName: toggleModelPrefab
+        m_MethodName: ToggleModelPrefab
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -976,8 +976,8 @@ MonoBehaviour:
   FirstPersonCamera: {fileID: 422878785}
   DetectedPlanePrefab: {fileID: 1654175882956584, guid: 6a35c744e5010405c847fad90282d2be,
     type: 2}
-  ModelPlanePrefab: {fileID: 188006, guid: c6b7fb383a3534b039692b5485b6e739, type: 2}
-  ModelPointPrefab: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 2}
+  ModelPrefab_1: {fileID: 188006, guid: c6b7fb383a3534b039692b5485b6e739, type: 2}
+  ModelPrefab_2: {fileID: 137650, guid: 826b6a0b570e8460990010fa615b5a2a, type: 2}
   ModelPrefabToggle: 1
   SearchingForPlaneUI: {fileID: 543772152}
 --- !u!4 &2087955694

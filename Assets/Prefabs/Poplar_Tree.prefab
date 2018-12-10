@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 2393902}
   - component: {fileID: 82257554490983446}
   - component: {fileID: 114712854171751748}
+  - component: {fileID: 64725134962129976}
   m_Layer: 0
   m_Name: Poplar_Tree
-  m_TagString: Untagged
+  m_TagString: VirtualObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 137650}
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -89,6 +90,20 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 137650}
   m_IsPrefabAsset: 1
+--- !u!64 &64725134962129976
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137650}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 186ad8f063dbf430da4d56ebc0cb14e0, type: 3}
 --- !u!82 &82257554490983446
 AudioSource:
   m_ObjectHideFlags: 1
